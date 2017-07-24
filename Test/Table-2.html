@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表格2</title>
+    <script src="js/angular.js"></script>
+
+</head>
+<body>
+<table>
+    <thead>
+    <th>名称</th>
+    <th>年龄</th>
+    <th>成绩</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in items">
+        <td>{{item.name}}</td>
+        <td>{{item.age}}</td>
+        <td>{{item.score}}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+
+
+        $scope.items = [
+            {name: '张三', age: '11', score: '78'},
+            {name: '李四', age: '31', score: '88'},
+            {name: '王五', age: '21', score: '68'}
+        ]
+
+
+    });
+
+
+</script>
+
+</body>
+</html>

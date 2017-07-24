@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="a6_2" ng-controller="c6_2">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T25-使用$provide自定义服务</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            font-size: 20px;
+        }
+
+        .show {
+            background-color: #ccc;
+            padding: 10px;
+            width: 500px;
+            margin: 30px auto;
+        }
+    </style>
+
+
+</head>
+<body>
+<div class="show">服务的返回值：
+    <span>{{info('name')}}</span>
+    <span>{{info('sex')}}</span>
+    <span>{{info('score')}}</span>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    var app = angular.module("a6_2", [], function ($provide) {
+        $provide.factory('$output', function () {
+            var stu = {
+                name: '张三',
+                sex: '男',
+                score: '60'
+
+            };
+            return stu;
+        })
+    });
+    app.controller("c6_2", function ($scope, $output) {
+
+        $scope.info = function (n) {
+            for (_n in $output) {
+                if (_n == n) {
+                    return ($output[_n]);
+                }
+            }
+        }
+
+    });
+
+
+</script>
+
+</html>

@@ -1,0 +1,23 @@
+package fuxi;
+
+import java.util.Arrays;
+
+public class Paixu3 {
+	public static void main(String[] args) {
+		String a[] = { "ytreklrutn" };
+		String c = a[0];
+
+	System.out.println("CµÄ³¤¶È£º"+c.length());
+	System.out.println(a[0]);
+	System.out.println(c);
+		
+		char[] b = new char[c.length()];
+		for (int i = 0; i <c.length(); i++) {
+			b[i] = c.charAt(i);
+		}
+		Arrays.sort(b);
+		for (char h : b) {
+			System.out.print(h );
+		}
+	}
+}

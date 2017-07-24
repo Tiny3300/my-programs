@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T2-setInterval</title>
+</head>
+<body>
+<input type="text" onblur="myBlur()"/>
+<p></p>
+
+<script>
+    var myBlur= function () {
+        var input=document.getElementsByTagName("input")[0].value;
+        input=parseInt(input);
+//        console.log(!isNaN(input));
+        if(input==1){
+            console.log("输入的是1");
+        }else if(input==2){
+            console.log("输入的是2")
+        }else{
+            if(input==3){
+                console.log("输入的是3");
+            }else if(input==4){
+                console.log("输入的是4");
+            }else{
+                console.log("输入的不是1234");
+            }
+
+
+        }
+
+
+
+    }
+
+
+
+</script>
+</body>
+</html>

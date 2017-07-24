@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>判断文本中回车的数量</title>
+</head>
+<body>
+<textarea id="t" cols="30" rows="10">
+</textarea>
+<button id="btn" onclick="tom()">获取</button>
+<script>
+
+    var tom = function () {
+        c = document.getElementById('t').value;
+        var counts = c.split('\n').length - 1;
+        alert('总共有' + counts + "个回车");
+    }
+</script>
+
+</body>
+</html>

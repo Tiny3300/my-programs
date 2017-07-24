@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html na-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>an5-绑定页面元素</title>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h3>请在下面文本框中输入任意内容</h3>
+<div ng-controller="userc"  >
+
+
+    <input id="Text1" type="text" ng-model="user.name" >
+    <p>{{user.name}}</p>
+
+
+
+</div>
+
+<script>
+    function userc($scope){
+        $scope.user= {name:""};
+    }
+</script>
+
+
+</body>
+</html>

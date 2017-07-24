@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>截取字符串的思想实现输入框字数限制</title>
+</head>
+<body>
+
+<input id="t" oninput="text(this.value)"/>
+<script>
+    function text(content) {
+        if (content.length > 5) {
+            document.getElementById("t").value =
+                    document.getElementById("t").value.substring(0, 5);
+        }
+    }
+</script>
+</body>
+</html>

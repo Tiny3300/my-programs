@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+
+
+   if(){
+
+   } else{
+
+   }
+
+
+
+
+
+lottery.prize=Math.random()*(lottery)
+
+
+
+
+
+
+
+    var click=false;
+
+    window.onload= function () {
+        lottery.init("lottery");
+        $("#lottery a").click(function () {
+            if(click){
+                return false;
+            }else{
+                lottery.speed=100;
+                rock();
+                click=true;
+                return false;
+            }
+        });
+    };
+</script>
+</body>
+</html>

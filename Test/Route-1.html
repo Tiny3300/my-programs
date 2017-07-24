@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="app" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>route-1</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular-route/1.3.13/angular-route.js"></script>
+    <style type="text/css">
+        #d2{
+            width:200px;
+            height: 80px;
+            background-color: #a6beee;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="#/">首页</a>
+        <a href="#/book">图书页</a>
+        <a href="#/phone">手机</a>
+    </div>
+<div ng-view id="d2"></div>
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("app",['ngRoute']);
+    app.config(["$routeProvider", function ($routeProvider) {
+        $routeProvider.
+                when('/',{
+                    controller:'c1',
+                    template:'<div class="focus">{{title}}</div>'
+                })
+                .when('/book',{
+            controller:'c2',
+            template:'<div class="focus">{{title}}</div>'
+        })
+                .when('/phone',{
+            controller:'c3',
+            template:'<div class="focus">{{title}}</div>'
+        })
+                .otherwise({
+                    redirectTo:'/'
+                })
+
+    }]);
+    app.controller("c1",["$scope", function ($scope) {
+        $scope.title="首页";
+    }]);
+    app.controller("c2",["$scope", function ($scope) {
+        $scope.title="图书页";
+    }]);
+    app.controller("c3",["$scope", function ($scope) {
+        $scope.title="手机页";
+    }])
+</script>
+</html>

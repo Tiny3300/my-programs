@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>请输入整数</title>
+</head>
+<body>
+<input type="text" id="num" onblur="an()" onfocus="bn()"/>
+<p id="p"></p>
+
+</body>
+<script type="text/javascript">
+
+
+    var an=function(){
+//        var reg=/^-?\d+$/;//整数
+         var reg=/^\d+$/;//正整数
+       var str=document.getElementById("num").value;
+//        console.log("检验正则"+reg.test(str));
+
+        if(isNaN(str)){
+
+            document.getElementById("p").innerHTML="请输入数字";
+            document.getElementById("num").value="";
+
+
+        }else if(!reg.test(str)){
+            document.getElementById("p").innerHTML="请输入整数";
+            document.getElementById("num").value="";
+
+        }else{
+            document.getElementById("p").innerHTML="输入正确";
+        }
+    }
+    var bn= function () {
+        document.getElementById("p").innerHTML="";
+    }
+
+</script>
+
+</html>

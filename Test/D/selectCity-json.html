@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>省市联动-json数据</title>
+
+</head>
+<body>
+<select name="" id="province" onchange="setCity()">
+    <option value="">选择省</option>
+</select>
+<select name="" id="city">
+    <option value="">选择市</option>
+</select>
+
+<script>
+    var proJSON = {"1": "广东省", "2": "湖北省"};
+    var cityJSON = {
+        "1": {"020": "广州", "0755": "深圳", "0756": "珠海"},
+        "2": {"027": "武汉", "0710": "襄樊", "0715": "赤壁"}
+    };
+    window.onload = function () {
+        var province = document.getElementById('province');
+        for (temp in proJSON) {
+            province.add(new Option(proJSON[temp], temp));
+
+        }
+    };
+    function setCity() {
+        //触发了这个事件，就把二级菜单还原
+        var city = document.getElementById('city');
+        city.options.length = 1;
+        var val = document.getElementById('province').value;
+        if (!cityJSON[val])  return;
+        var sonJSON = cityJSON[val];
+        for (temp in sonJSON) {
+            city.add(new Option(sonJSON[temp], temp));
+        }
+    }
+
+</script>
+</body>
+
+</html>

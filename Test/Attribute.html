@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>通过属性名获取属性值</title>
+</head>
+<body>
+<h3 id="m" title="BOBO" style="cursor:pointer;">点击我，获取标签的属性值</h3>
+
+</body>
+
+<script type="text/javascript">
+    var a = document.getElementById("m");
+    a.onclick = function () {
+
+        var r1 = a.getAttribute("id");
+        var r2 = a.getAttribute("title");
+
+        console.log("h3标签的ID:" + r1);
+        console.log("h3标签的title:" + r2);
+    }
+
+</script>
+
+</html>

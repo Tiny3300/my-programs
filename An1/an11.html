@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <title></title>
+    <style type="text/css">
+        .show{color:red;font:30px bold simplified;}
+    </style>
+
+</head>
+<body>
+
+<div ng-controller="myCtrl">
+    <p class="show">{{spanShow()}}</p>
+
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",['$scope',function($scope){
+        $scope.text=null;
+        $scope.spanShow= function () {
+            $scope.text="欢迎来到Angular的精彩世界！";
+            return $scope.text;
+        };
+    }]);
+
+
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T47-js×Ö·û´®ÅÅÐò</title>
+
+
+</head>
+<body>
+<p id="ap"></p>
+
+</body>
+
+<script type="text/javascript">
+    var a = "string";
+
+    var b = a.split("");
+
+
+    b.sort();
+    console.log(b);
+    var c = b.join("");
+    console.log(c);
+
+
+</script>
+
+</html>

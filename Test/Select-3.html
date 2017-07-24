@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>联动下拉框</title>
+
+
+</head>
+<body>
+
+方向：
+<select onchange="classChanged()" id="selClass">
+    <option>请选择</option>
+    <option>JSD</option>
+    <option>UID</option>
+    <option>PHP</option>
+</select>
+课程：
+<select name="" id="selProject">
+    <option value="">请选择</option>
+</select>
+
+
+</body>
+
+<script type="text/javascript">
+ function classChanged(){
+     var i= document.getElementById("selClass").selectedIndex;
+     var data = projectArray[i];
+
+     var selObj = document.getElementById("selProject");
+     while(selObj.childNodes.length>0){
+         selObj.removeChild(selObj.lastChild);//删除原来的数据
+     }
+
+     for(var i=0;i<data.length;i++){
+         var optionObj = document.createElement("option");
+         optionObj.value = i;
+         optionObj.innerHTML=data[i];
+         selObj.appendChild(optionObj);
+
+     }
+
+     var projectArray = new Array();
+     projectArray[0] = ["请选择"];
+     projectArray[1] = ["java","oracle","jsp","jdbc"];
+     projectArray[2] = ["ps","css"];
+     projectArray[3] = ["php","mysql","jquery"];
+
+ }
+
+
+</script>
+
+</html>

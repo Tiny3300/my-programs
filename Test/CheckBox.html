@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T64-实现全选</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+
+        th {
+            background-color:rgb(51, 199, 18);
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+
+        td {
+            font: 14px "微软雅黑";
+        }
+
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+<div class="wrap">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="theadCheckbox" />
+            </th>
+            <th>快递</th>
+            <th>收件人</th>
+            <th>电话</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>顺丰</td>
+            <td>张大大</td>
+            <td>186*****897
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>韵达</td>
+            <td>张全蛋</td>
+            <td>186*****897
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>圆通</td>
+            <td>韩非</td>
+            <td>186*****897
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" />
+            </td>
+            <td>中国邮政</td>
+            <td>卫庄</td>
+            <td>186*****897
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    window.onload = function() {
+
+        var theadCheckbox = document.getElementById("theadCheckbox");//获得实现全选的复选框
+
+        var tbody = document.getElementById("tbody");
+
+        var myCheckbox = tbody.getElementsByTagName("input");//获得tbody里的所有复选框
+
+
+        theadCheckbox.onclick = function() {
+
+            for(var i = 0; i < myCheckbox.length; i++) {
+                myCheckbox[i].checked = this.checked;
+            }
+        }}
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>题1~3：表单验证</title>
+<style type="text/css">
+	th{ text-align:right;}
+	#tdlast{ text-align:center;}
+	.name{ border:red 2px solid;}
+	.reset{ border:#CCC 1px solid;}
+	.right{ border:green 2px solid;}
+	span{ color:red;font-size:12px;}
+</style>
+</head>
+<script type="text/javascript">
+	function fos(event){
+		event.className="name";
+	}
+	function blu(event){
+		event.className="reset";
+		event.nextElementSibling.innerHTML="";
+		if(event.getAttribute("id")=="name" && (event.value.length<4 || event.value.length>6)){
+			event.nextElementSibling.innerHTML="用户名不能为空，4~6位字符！";	
+			return false;	
+		}
+		if(event.getAttribute("id")=="pwd" && event.value.length<6){
+			event.nextElementSibling.innerHTML="密码不能小于6位！";
+			return false;			
+		}
+		if(event.getAttribute("id")=="repwd"){
+			var pwd=document.getElementById("pwd").value;
+			if(event.value.length==0){
+				event.nextElementSibling.innerHTML="密码不能小于6位！";
+				return false;
+			}
+			if(event.value!=pwd){
+				event.nextElementSibling.innerHTML="两次输入密码必须一致！";
+				return false;	
+			}			
+		}
+		if(event.getAttribute("id")=="email"){
+			var reg=/^\w+@\w+(.\w+){1,2}$/
+			if(!reg.test(event.value)){
+				event.nextElementSibling.innerHTML="邮箱必须包含“@”和“.”！";	
+				return false;	
+			}			
+		}
+		event.className="right";
+		return true;
+	}
+</script>
+
+<body>
+	<form>
+        <table width="800" border="0" cellspacing="5" cellpadding="0" align="center">
+            <tr>
+                <th scope="row">用户名：</th>
+                <td><input type="text" id="name" onfocus="fos(this)" onblur="blu(this)"/><span></span></td>
+            </tr>
+            <tr>
+                <th scope="row">密&nbsp;码：</th>
+                <td><input type="password" id="pwd" onfocus="fos(this)" onblur="blu(this)"/><span></span></td>
+            </tr>
+            <tr>
+                <th scope="row">再次输入密码：</th>
+                <td><input type="password" id="repwd" onfocus="fos(this)" onblur="blu(this)"/><span></span></td>
+            </tr>
+            <tr>
+                <th scope="row">邮&nbsp;箱：</th>
+                <td><input type="text" id="email" onfocus="fos(this)" onblur="blu(this)"/><span></span></td>
+            </tr>
+            <tr>
+                <th>个人简介：</th>
+                <td><textarea cols="10" rows="4"></textarea></td>
+            </tr>
+            <tr>
+                <td scope="row" colspan="2" id="tdlast" >
+                	<input type="submit" value="提交" />&nbsp;&nbsp;&nbsp;
+                    <input type="reset" value="重置" />
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>省市联动</title>
+
+</head>
+<body>
+<select name="" id="province" onchange="set()">
+    <option value="">选择省</option>
+</select>
+<select name="" id="city">
+    <option value="">选择市</option>
+</select>
+
+<script>
+    var arr = new Array();
+    arr['广东省'] = ['广州', '深圳', '珠海'];
+    arr['湖北省'] = ['武汉', '赤壁', '襄樊'];
+    window.onload = function () {
+//        向省级赋值
+        var proSel = document.getElementById('province');
+        for (temp in arr) {
+            proSel.add(new Option(temp, temp));
+        }
+    }
+    var set = function () {
+        var citySel = document.getElementById('city');
+        citySel.options.length = 1;
+        //获取选中的省的信息
+        var pro = document.getElementById('province').value;
+        //如果选中的是提示信息，则不需要赋值
+        if (pro == '') return;
+        for (i = 0; i < arr[pro].length; i++) {
+            citySel.add(new Option(arr[pro][i], arr[pro][i]));
+        }
+
+
+    }
+</script>
+</body>
+
+</html>

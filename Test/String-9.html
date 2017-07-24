@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>@返回字符串中出现次数最多的那个字符和次数2</title>
+
+</head>
+<body>
+</body>
+
+<script type="text/javascript">
+    function tom(str) {
+        var obj = {};
+        for (var i = 0; i < str.length; i++) {
+            var s = str[i];
+            if (!obj[s]) {
+                obj[s] = 1;
+            } else {
+                obj[s]++;
+            }
+        }
+
+        var num = 0;
+        var word = "";
+
+        for (var item in obj) {
+
+            if (obj[item] > num) {
+                num = obj[item];
+                word = item;
+            }
+        }
+        return ("num:" + num + " word:" + word)
+    }
+    var strs = "aabbbccc";
+    var h = tom(strs);
+    console.log(h);
+</script>
+</html>

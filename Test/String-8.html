@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>返回字符串中出现次数最多的那个字符</title>
+
+</head>
+<body>
+</body>
+
+<script type="text/javascript">
+
+
+    function maxNum(str) {
+
+        if (str.length <= 1) {
+            return str;
+        }
+
+        var a = str.split(''), obj = {};
+        for (var i = 0, j = a.length; i < j; i++) {
+            if (!obj[a[i]]) {
+                obj[a[i]] = 1;
+            } else {
+                obj[a[i]] += 1;
+            }
+
+        }
+        var num = 0, word = '';
+        for (var item in obj) {  //item:a,b,c
+            if (obj[item] > num) {
+
+                num = obj[item];
+                word = item;  //word:a
+
+            }
+        }
+        return word;
+    }
+    var strs = "aaabbbccc";
+    var w = maxNum(strs);
+    console.log('w:' + w);   //a
+</script>
+</html>

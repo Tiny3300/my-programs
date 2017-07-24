@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="myApp" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T11-另外一种数据绑定</title>
+    <script src="js/angular.js"></script>
+</head>
+<body>
+<div ng-controller="myCtrl">
+
+    <input type="text" id="Text1" ng-model="user.name"/>
+
+    <p>{{user.name}}</p>
+
+</div>
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl",function($scope){
+        $scope.user={name:""};
+    });
+
+</script>
+
+</body>
+</html>

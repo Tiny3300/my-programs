@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>HTTP对象的方法请求服务端API-post方式</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+
+</head>
+<body>
+<div ng-controller="myCtrl">
+    <input type="text" ng-model="num"/>
+
+    <div>{{result}}</div>
+    <button ng-click="send()">请求</button>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    angular.module("myApp", [])
+            .config(function ($httpProvider) {
+                $httpProvider.defaults.headers.post = {
+                    'Content-Type': 'application/x-www-form-urlencoded'//头文件请求类型 表单方式传数据
+                }
+                $httpProvider.defaults.transformRequest =
+                        function (obj) {
+                            var arrStr = [];//字符对象的格式传送数据
+                            for (var p in obj) {
+                                arrStr.push(encodeURIComponent(obj[p]));
+                            }
+                            return arrStr.join("&");
+                        }
+            })
+            .controller("myCtrl", ["$scope", "$http", function ($scope, $http) {
+                $scope.num = "";
+                $scope.result = "";
+                $scope.send = function () {
+                    $http({
+                                method: 'POST',
+                                url: 'data/chk.php',
+                                data: {
+                                    n: $scope.num
+                                }
+                            }
+                    )
+                            .
+                            success(function (data, status, headers, config) {
+                                $scope.result = data;
+                                //console.log(status+"/"+headers+"/"+config);
+                            })
+                }
+
+
+            }]);
+
+
+    /*服务端文件data/chk.php
+     <?php
+     function checkNum($num){
+     return ($num%2) ? TRUE : FALSE;
+     }
+     $num=$_POST["n"];
+     if(checkNum($num)===TRUE){
+     echo "奇数";
+     }else{
+     echo "偶数";
+     }
+     ?>**/
+
+</script>
+
+</html>

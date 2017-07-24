@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>统计字符串中每个字符的个数@</title>
+</head>
+<body>
+</body>
+
+<script type="text/javascript">
+    function f(str) {
+        var arr = str.split("");
+        var obj = {};
+        for (var i = 0; i < arr.length; i++) {
+            var val = arr[i];    //每个数组元素用val变量接收
+            if (obj[val] && obj[val].value == val) {
+            //如果obj[val]对象存在并且obj[val]对象的value值为val
+
+                obj[val].count+=1;
+
+            } else {
+
+                obj[val] = {};     //创建obj[val]这个对象
+
+                obj[val].value = val;     //obj[val]对象的value值为val
+
+                obj[val].count = 1;      //obj[val]对象的count值为1
+
+            }
+        }
+
+        for (var key in obj) {      //创建对象后循环遍历
+
+            console.log(obj[key].value + ':' + obj[key].count);
+        }
+    }
+
+
+    var s = "aaabbc";
+
+    f(s);
+
+
+</script>
+
+</html>

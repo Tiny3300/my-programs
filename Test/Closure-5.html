@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>@弹出点击次数</title>
+    <style>
+        ul li {
+            list-style-type: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+<ul id="test">
+    <li>第一条</li>
+    <li>第二条</li>
+    <li>第三条</li>
+</ul>
+
+</body>
+
+<script>
+    //弹出点击次数
+    (function A() {
+        var index = 0;
+        var ul = document.getElementById("test");
+        for (var i = 0, l = ul.childNodes.length; i < l; i++) {
+            if (ul.childNodes[i].nodeName.toLowerCase() == "li") {
+                var li = ul.childNodes[i];
+                li.onclick = function () {
+                    index++;
+                    alert(index);
+
+
+                }
+            }
+        }
+    })();
+
+</script>
+
+</html>

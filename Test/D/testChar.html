@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>检验非法字符</title>
+</head>
+<body>
+<input type="text"  id="txt1" />
+<button onclick="check(txt1.value)">测试文本</button>
+<script>
+    var bForbidden = false;
+    var ch;
+    var strForbidden = new Array('<','>','&');
+    function check(str){
+        //遍历特殊字符数组和用户输入的字符串,然后比较
+        for(var i=0;i<strForbidden.length;i++){
+            for(var j=0;j<str.length;j++){
+                ch=str.substr(j,1);
+                if(ch==strForbidden[i]){//如果包含非法字符
+                    bForbidden = true;
+                }
+            }
+
+        }
+        if(bForbidden){
+            alert("包含特殊字符，已经被禁止！");
+
+        }else{
+            alert("正常");
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

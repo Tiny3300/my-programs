@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>闭包</title>
+</head>
+<body>
+
+<p>局部变量计数-闭包。</p>
+<button  onclick="tom()">计数</button>
+<p id="demo">0</p>
+<script>
+    var add = function () {
+        var counter = 0;
+        return function () {return counter += 1;}
+    };
+    var result=add();
+
+    function tom(){
+        document.getElementById("demo").innerHTML = result();//递增
+    }
+</script>
+
+</body>
+</html>

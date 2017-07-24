@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>输入字数统计</title>
+
+</head>
+<body>
+
+<h3 class="pro_h3 pt_20">标题<span>(<b id="news_title_limit">0</b>/30字)</span></h3>
+<input class="input_text" type="text" name="news_title" id="news_title" value="请输入" />
+
+<script type="text/javascript">
+
+    /*
+     参数：
+     length:最大长度
+     ele: 输入对象
+     callBack： 回调方法，参数len表示当前输入框内容字节数， 方法中的this指向ele对
+     autoFire:   初使化自动调用一次
+     */
+    function input_max(length, ele, showEle, callBack,autoFire){
+
+        if(ele.addEventListener){
+            //ele.addEventListener('input', change, false);
+            ele.addEventListener('focus', intervalChange, false);
+            ele.addEventListener('blur', function(){clearInterval(this.dataFocus); delete this.dataFocus}, false);
+
+        }else{
+            //ele.attachEvent('onpropertychange', function(){if(window.event.propertyName == "value"){alert('a');change()}})
+            ele.attachEvent('onfocus', intervalChange);
+            ele.addEventListener('onblur', function(){clearInterval(this.dataFocus); delete this.dataFocus});
+
+        }
+
+        function intervalChange(){
+            this.dataFocus = setInterval(change,200);
+        }
+
+        function change(){
+            var len = Math.ceil(byteLength(ele.value)/2);
+            len = len <= length ? len : length - len;
+            callBack.call(ele,showEle,len);
+        };
+
+        function byteLength(b) {
+            if (typeof b == "undefined") { return 0 }
+            var a = b.match(/[^\x00-\x80]/g);
+            return (b.length + (!a ? 0 : a.length))
+        };
+
+        //自动调用一次
+        if(autoFire){change()};
+
+    };
+
+
+    // 回调函数
+    function input_max_callBack(showEle,len){
+        var note = showEle;
+
+        if (len >= 0 ){
+            note.innerHTML = len ;
+            this.style.borderColor = "";
+            this.style.backgroundColor = "";
+        }else{
+            note.innerHTML = "<span class='red b fz_14'>超过" + -len + "</span>";
+            this.style.backgroundColor = "#FFC";
+            this.style.borderColor = "#F00";
+        }
+
+    }
+
+
+
+    // 动态标题
+    input_max(30, document.getElementById('news_title'), document.getElementById
+    ('news_title_limit'),input_max_callBack,true);
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="a10_4">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T33-注意ng-repeat中的索引号</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+    <style type="text/css">
+        .frame {
+            padding: 5px 8px;
+            margin: 0;
+            font-size: 20px;
+            width: 500px;
+            height: 50px;
+            background-color: #eee;
+        }
+
+        .frame ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .frame ul li:first-child {
+            font-weight: bold;
+            font-size: 38px;
+        }
+
+        .frame ul li {
+            height: 38px;
+            line-height: 38px;
+        }
+
+        .frame ul li span {
+            float: left;
+            width: 80px;
+        }
+
+        .frame ul li span:last-child {
+            cursor: pointer;
+        }
+
+    </style>
+
+
+</head>
+<body ng-controller="c10_4" class="frame">
+<ul>
+    <li><span>序号</span>
+        <span>姓名</span>
+        <span>分数</span>
+        <span>操作</span>
+    </li>
+    <li ng-repeat="item in items | filter:fscore">
+        <span>{{item.id}}</span>
+        <span>{{item.name}}</span>
+        <span>{{item.score}}</span>
+        <span ng-click="remove(item,$index)">删除</span>
+    </li>
+
+</ul>
+
+
+</body>
+
+<script type="text/javascript">
+   angular.module("a10_4", [])
+           .controller("c10_4", function ($scope) {
+               $scope.items=getStu();
+               $scope.fscore= function (e) {
+                   return e.score>60;
+               };
+               $scope.remove= function (item,index) {
+                   console.log(item);
+                   var item2=$scope.items[index];
+                   console.log(item2);
+               };
+           });
+    function getStu(){
+        return [{id:1010,name:"张立秋",score:10},
+            {id:1020,name:"李大山",score:50},
+            {id:1030,name:"胡正清",score:70},
+            {id:1040,name:"刘三峡",score:90},
+            {id:1050,name:"钟华",score:60}
+        ]
+    }
+
+
+</script>
+
+</html>

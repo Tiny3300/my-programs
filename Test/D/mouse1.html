@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .over {
+            color: yellow;
+            background: #7a7280;
+        }
+
+        .down {
+            color: yellow;
+            background: #7a7280;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<!--1.鼠标移入移出事件-->
+<input type="button"
+       onmousemove="this.className='over';"
+       onmouseout="this.className='';"
+       onmousedown="this.className='down';"
+       onmouseup="this.className='over';"
+       value="让按钮嵌入"
+       onclick="this.value='嵌入成功！'"
+
+        />
+
+
+<!--2.按钮只能单击一次-->
+<button onclick="this.disabled=true">单击</button>
+
+
+</body>
+</html>

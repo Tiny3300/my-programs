@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>闭包的理解2</title>
+</head>
+<body>
+
+<p>局部变量计数</p>
+<button onclick="tom()">计数</button>
+<p id="demo">0</p>
+<script>
+
+    function add() {
+        var counter = 0;
+        return counter += 1;
+    }
+
+    function tom(){
+        document.getElementById("demo").innerHTML = add();
+        //一直都是1,因为counter是局部变量。要想实现递增的效果，counter必须是全局变量，或者用闭包
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>输入三个数字排序显示</title>
+</head>
+<body>
+<p>第一个输入框</p>
+<input type="text" id="a1"/>
+
+<p>第二个输入框</p>
+<input type="text" id="a2"/>
+
+<p>第三个输入框</p>
+<input type="text" id="a3"/><br/>
+
+<button onclick="paixu()">排序结果：</button>
+<p id="result"></p>
+</body>
+
+<script type="text/javascript">
+    var paixu = function () {
+    var a1,a2,a3;
+    a1=document.getElementById("a1").value;
+    a2=document.getElementById("a2").value;
+    a3=document.getElementById("a3").value;
+        a1=parseInt(a1);
+        a2=parseInt(a2);
+        a3=parseInt(a3);
+
+        var n=isNaN(a1);
+        console.log(n);
+
+    var str=[];
+    str.push(a1);
+    str.push(a2);
+    str.push(a3);
+        console.log(str);
+
+        str.sort(function (a,b) {
+            return a-b
+        });
+        console.log(str);
+         document.getElementById("result").innerHTML=str;
+
+    }
+</script>
+
+</html>

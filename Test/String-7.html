@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>数组去重</title>
+
+</head>
+<body>
+</body>
+<script type="text/javascript">
+
+    var strs = ['a', 'a', 5, 5,7];
+
+    function remove1(str) {
+        var newStr = [], obj = {};
+        for (var i = 0, h = str.length; i < h; i++) {
+            if (!obj[str[i]]) {
+                newStr.push(str[i]);
+                obj[str[i]] = 1;
+            }
+        }
+        return newStr;
+    }
+    var s1 = remove1(strs);
+    console.log('s1:' + s1);
+
+
+    function remove2(str) {
+        return Array.from(new Set(str));
+    }
+
+    var s2 = remove2(strs);
+    console.log('s2:' + s2)
+
+
+    function remove3(str) {
+        var newStr = [];
+        for (var i = 0, j = str.length; i < j; i++) {
+            if (newStr.indexOf(str[i]) === -1) {
+                newStr.push(str[i]);
+            }
+        }
+        return newStr;
+    }
+    var s3=remove3(strs);
+    console.log('s3:'+s3);
+
+    //4
+    function remove4(str) {
+        var newStr = [];
+
+        str.forEach(function( e,i, str) {//固定顺序，e是数组元素，i是数组元素下标
+
+            if (str.indexOf(e) === i) {
+                newStr.push(e);
+            }
+        });
+
+        return newStr;
+    }
+
+    var s4=remove4(strs);
+    console.log('s4:'+s4);
+
+    //5
+    function remove5(str) {
+        var newStr = [],
+               end;
+        str.sort();
+        end = str[0];
+        newStr.push(str[0]);
+
+        for (var i = 1; i < str.length; i++) {
+            if (str[i] != end) {
+                newStr.push(str[i]);
+                end = str[i];
+            }
+        }
+        return newStr;
+    }
+
+    var s5=remove5(strs);
+    console.log('s5:'+s5);
+
+
+
+</script>
+
+</html>

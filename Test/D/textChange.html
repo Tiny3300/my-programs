@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>单词首字母转大写-只在IE上有效</title>
+</head>
+<body>
+<input type="text" name="txt1" value="this is text!"/>
+<button onclick="change(txt1)">转换文本</button>
+<script>
+    var change = function (frmObj) {
+        var index, tmpStr, tmpChar, preString, postString;
+        tmpStr = frmObj.value.toLowerCase();  //全部转换成小写
+        strLen = tmpStr.length;
+        if (strLen > 0) {
+            for (index = 0; index < strLen; index++) {
+                if (index == 0) {
+                    //将第一位转换成大写
+                    tmpChar = tmpStr.substring(0, 1).toUpperCase();
+                    postString = tmpStr.substring(1, strLen);
+                    tmpStr = tmpChar + postString;
+                } else {
+                    tmpChar = tmpStr.substring(index, index + 1);
+                    //如果是第二个单词，通过空格判断
+                    if (tmpChar == ' ' && index < (strLen - 1)) {
+                        tmpChar = tmpStr.substring(index + 1, index + 2).toUpperCase();
+                        preString = tmpStr.substring(0, index + 1);
+                        postString = tmpStr.substring(index + 2, strLen);
+                        tmpStr = preString + tmpChar + postString;
+
+                    }
+
+                }
+            }
+        }
+        frmObj.value = tmpStr; //显示转换后的文本
+    }
+</script>
+</body>
+</html>

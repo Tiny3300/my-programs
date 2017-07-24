@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>金山打字游戏2</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(img/wall1.jpg);
+        }
+
+        .bg-div {
+            width: 1000px;
+            height: 450px;
+            margin: 0 auto;
+        }
+
+        .showDiv {
+            width: 1000px; height: 410px;border: 1px solid #0081ff;  background-color:#886798;
+            overflow: hidden;position: absolute;
+
+        }
+        .scoreDiv{width:600px;height:30px;border:5px dashed #B4C7C7;background-color:#886798;
+       border-radius: 10px;position: absolute;top:440px;}
+        .span{size:20px;color:orange;}
+        .spanScore{color:orange;}
+        .btn{position:absolute;width:40px;height:40px;}
+
+    </style>
+    <script type="text/javascript">
+        var chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        var score =0;
+
+        function generateChar(){
+            //获取产生字母的区域
+            var div= document.getElementById("showDiv");
+
+            //每隔一秒产生一个，定时执行
+            window.setInterval(function(){
+                var btn = document.createElement("input");
+                //按钮随机三张图片
+                var random = Math.ceil(Math.random()*3);
+                //给按钮添加样式
+                btn.className ="btn";
+                btn.type = "button";
+
+                btn.value = chars[parseInt(Math.random()*26)];
+
+                btn.style.top="10px";
+                btn.style.left=parseInt(Math.random()*760+40)+"px";
+                btn.style.font="bold 30px 宋体";
+                btn.style.color="white";
+
+
+
+                btn.style.background = "url(img/"+random+".png)no-repeat";
+               // btn.style.backgroundSize="160px 160px";
+                //产生的按钮放进区域
+                div.appendChild(btn);
+
+            },1000);
+            //
+            //
+
+        }
+
+        function downChar(){
+            //获取字母产生的区域
+            var div =document.getElementById("showDiv");
+
+            //每隔一秒 定时执行 下落动作
+            window.setInterval(function(){
+                //获取显示区域中的所有创建按钮
+
+                 var btns = div.childNodes;
+                //遍历所有创建按钮 执行下落动作
+                for(var i = 0;i<btns.length;i++){
+                    //
+                    var btn = btns[i];
+                    //判断按钮是否已经创建
+                    if(btn.nodeType==1){
+                        //获取节点的top
+                        var top = parseInt(btn.style.top);
+                        //判断是否溢出边界
+                        if(top<360){
+                            btn.style.top=top+40+"px";
+                        }else{ //干掉
+                            div.removeChild(btn);
+                            score -=10;
+
+                            document.getElementById("spanScore").innerHTML =score;
+
+                        }
+                    }
+
+
+
+
+                }
+
+
+
+
+
+            },1000);
+
+
+
+        }
+
+
+ function initPage(){
+    //动态产生26个字母
+     generateChar();
+     //字母下落
+     downChar();
+ }
+
+        //键盘按下 显示区域中的匹配值按钮 消失  分数递增或递减
+        window.onkeyup( function () {
+
+            //获取产生字母的区域
+            var div = document.getElementById("showDiv");
+            //获取用户按下的键值
+            var eve = window.event || event;
+            var code = eve.keyCode;
+            //获取显示区域中的按钮
+            var btns = div.childNodes;
+            //遍历 显示区域中的按钮
+            for (var i = 0; i < btns.length; i++) {
+                //获取每一个按钮
+                var btn = btns[i];
+                //判断节点
+                if (btn.nodeType == 1) {
+                    //判断用户输入的值和显示区的值是否匹配
+                    if (btn.value == chars[code - 65]) {//通过什么 找到什么
+                        //按钮消失
+                        div.removeChild(btn);
+                        //分数增加
+                        score = score+10;
+                        score = document.getElementById("spanScore").innerHTML ;
+
+                    }
+
+                }
+
+
+            }
+        });
+
+
+
+
+
+    </script>
+</head>
+<body onload="initPage();">
+
+<div class="bg-div">
+    <!--矩形显示区域-->
+    <div class="showDiv" id="showDiv">
+
+
+    </div>
+
+     <!--分数显示区域-->
+    <div class="scoreDiv" >
+        <span class="span">您的分数:</span>
+        <span class="spanScore" id="spanScore">0</span>
+
+    </div>
+
+</div>
+
+
+
+
+</body>
+</html>

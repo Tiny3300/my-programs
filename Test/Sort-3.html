@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>快排</title>
+</head>
+<body>
+<script type="text/javascript">
+    var arr = [90,9,12,6,30,60,36,32,40];
+    function quickSort(arr){
+        if (arr.length <= 1) { return arr }
+        var pivotIndex = Math.floor(arr.length / 2); //取基值的下标
+        var pivot = arr.splice(pivotIndex, 1)[0];    //删除基值后的第一个值，并返回该值
+        var left = [];  //定义一个左数组
+        var right = [];
+        for (var i = 0; i < arr.length; i++){
+            if (arr[i] < pivot) {
+                left.push(arr[i]); //左边数组
+            } else {
+                right.push(arr[i]);
+            }
+        }
+        return quickSort(left).concat([pivot], quickSort(right));
+    }
+    //concat() 方法用于连接两个或多个数组,该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。
+    var newsort = quickSort(arr);
+    console.log(newsort);
+    alert(newsort);
+</script>
+</body>
+</html>

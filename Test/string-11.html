@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>鼠标单击Button1后将Button1移动到Button2的后面</title>
+</head>
+<body>
+<div>
+    <input type="button" id="button1" value="1" onclick="moveBtn(this);">
+    <input type="button" id="button2" value="2"/>
+</div>
+<script type="text/javascript">
+    function moveBtn(obj) {
+
+        var clone = obj.cloneNode(true);
+        var parent = obj.parentNode;
+        parent.appendChild(clone);
+        parent.removeChild(obj);
+    }
+</script>
+</body>
+
+
+</html>

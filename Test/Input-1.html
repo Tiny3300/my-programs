@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>T60-输入数字取整</title>
+    <STYLE>
+    </STYLE>
+
+    <script type="text/javascript">
+        var keyup = function (obj)
+        {
+            var reg = /^(\+|\-)?(((\d+)\.?(\d*))|((\d*)\.(\d+)))$/;
+            if (!reg.test (obj.value))
+            {
+                obj.value = '';
+            }
+            else
+            {
+                var f = obj.value.replace (reg, '$1');
+                var z1 = obj.value.replace (reg, '$4');
+                var x1 = obj.value.replace (reg, '$5');
+
+                var z2 = obj.value.replace (reg, '$7');
+                var x2 = obj.value.replace (reg, '$8');
+                console.log (f + ',' + z1 + ',' + x1 + ',' + z2 + ',' + x2);
+                if (z1 != '')
+                {
+                    obj.value = f + ((x1 == "" || parseInt (x1.substring (0, 1)) < 5) ? z1 : Number (z1) + 1);
+                }
+                else
+                {
+                    obj.value = f + (parseInt (x2.substring (0, 1)) >= 5 ? 1 : 0);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="text" onblur="keyup(this);" />
+</body>
+</html>

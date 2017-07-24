@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表格onmousemove</title>
+    <style>
+        .o {
+            background-color: #55e259;
+        }
+    </style>
+
+</head>
+<body>
+
+<table id="tab">
+    <thead>
+    <tr>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>分数</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>张飞</td>
+        <td>28</td>
+        <td>77</td>
+    </tr>
+    <tr>
+        <td>笨笨</td>
+        <td>29</td>
+        <td>79</td>
+    </tr>
+    <tr>
+        <td>三叔</td>
+        <td>28</td>
+        <td>99</td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    window.onload = function () {
+        var tab = document.getElementById('tab');
+        var tbody = tab.getElementsByTagName('tbody')[0];
+        var trs = tbody.getElementsByTagName('tr');
+        console.log("1");
+        for (var i = 0; i < trs.length; i++) {
+            trs[i].onmousemove = function () {
+                this.className = "o";
+            }
+            trs[i].onmouseout = function () {
+                this.className = "";
+            }
+
+        }
+    }
+
+</script>
+</body>
+
+</html>

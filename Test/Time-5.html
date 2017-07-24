@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>时间</title>
+</head>
+<body>
+<div id="show">time</div>
+
+<script language="JavaScript" type="text/javascript">
+    window.onload = function () {
+        showTime();
+
+
+    };
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    var showTime = function () {
+        var myDate = new Date();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        var year = myDate.getFullYear();
+        var day = myDate.getDay();
+        var h = myDate.getHours();
+        var m = myDate.getMinutes();
+        var s = myDate.getSeconds();
+        m = checkTime(m);
+        h = checkTime(h);
+        s = checkTime(s);
+
+        var weekday = [];
+        weekday[0] = "星期天";
+        weekday[1] = "星期一";
+        weekday[2] = "星期二";
+        weekday[3] = "星期三";
+        weekday[4] = "星期四";
+        weekday[5] = "星期五";
+        weekday[6] = "星期六";
+
+
+        document.getElementById("show").innerHTML = year + '年' + month + '月' + date + '日' + weekday[day]
+                + h + '时' + m + '分' + s + '秒';
+        setTimeout(showTime, 1000);
+    }
+
+</script>
+
+</body>
+</html>

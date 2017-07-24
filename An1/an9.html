@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="lesson" ng-controller="formCtrl" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <title>an9</title>
+
+</head>
+<body>
+    <form ng-submit="postForm()">
+        <ul>
+            <li>
+                <p>用户名：<input type="text" ng-model="form.userName"></p>
+            </li>
+            <li>
+                <p>昵称：<input type="text" ng-model="form.nickName"></p>
+            </li>
+            <li>
+                <p>年龄：<input type="text" ng-model="form.Age"></p>
+            </li>
+            <li>
+                <p>是否已婚：<input type="checkbox" ng-model="form.isMarried"></p>
+            </li>
+            <li><input type="submit" value="提交"></li>
+
+        </ul>
+
+    </form>
+
+    <ul>
+        <li>{{form.userName}}</li>
+        <li>{{form.nickName}}</li>
+        <li>{{form.Age}}</li>
+        <li>{{form.isMarried}}</li>
+    </ul>
+
+
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("lesson",[]);
+    app.controller("formCtrl",function($scope){
+        $scope.form={};
+
+
+       $scope.postForm=function(){
+
+           console.log($scope.form);
+
+
+        }
+    })
+
+
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src=" http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+    <style>
+        .str{
+            color: #ff2c27;
+            background-color: #f4caff;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+
+<table ng-controller="myCtrl">
+    <tr ng-repeat="x in users" ng-class="'str'">
+        <td>{{x.Name}}</td>
+        <td>{{x.Country}}</td>
+    </tr>
+</table>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope) {
+        $scope.users= [
+            {
+                "Name" : "宝宝",
+                "Country" : "Germany"
+            },
+            {
+                "Name" : "小乐",
+                "Country" : "Sweden"
+            },
+            {
+                "Name" : " 菠萝菠萝",
+                "Country" : "Mexico"
+            },
+            {
+                "Name" : "简",
+                "Country" : "Austria"
+            }
+        ]
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-init="a=11;b=12;">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T1-双向绑定</title>
+    <script src="js/angular.js"></script>
+
+
+</head>
+<body>
+<div>
+
+    <p>名字:<input type="text" ng-model="name"></p>
+
+    <h1>Hello &nbsp {{name}}</h1>
+
+    <p>{{5*5}}</p>
+
+    <p>{{a*b}}</p>
+
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+
+</script>
+
+</body>
+</html>

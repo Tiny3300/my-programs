@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="a4_1" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T17-依赖注入的原理</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+    <style type="text/css">
+        body{font-size: 12px;  }
+        .show{
+            border:solid 1px #ccc;
+            padding:8px;
+            width:260px;
+            height: 260px;
+            margin:10px 0;
+            font:30px bold 新宋体;
+            color: #c11314;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c4_1">
+    <div class="{{cls}}">{{show}}</div>
+    <button ng-click="tom()">点我</button>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    var a4_1=angular.module("a4_1",[]);
+    a4_1.config(function($controllerProvider){
+        $controllerProvider.register('c4_1',['$scope',
+        function($scope){
+            $scope.cls="";
+            $scope.tom=function(){
+                $scope.cls="show";
+                $scope.show="出来";
+            };
+        }]);
+
+    });
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>@鼠标点击页面中的任意标签，alert该标签的名称</title>
+    <style>
+        body {
+            cursor: pointer;
+        }
+
+        div {
+            background-color: blue;
+            width: 150px;
+            height: 150px;
+        }
+
+        span {
+            background-color: #658050;
+            width: 120px;
+            height: 120px;
+            display: block;
+        }
+
+        p {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+    <script type="text/javascript">
+        document.onclick = function (eve) {
+            var e = window.event || eve;  //获取事件对象
+       //    var tag = e["target"] || e["srcElement"];  //获取发生事件的那个元素
+               var tag= e.target|| e.srcElement;         //同样的意思，两种写法
+            alert(tag.tagName);
+        };
+    </script>
+</head>
+<body>
+<div id="div"><span>span</span>div</div>
+<p>P</p>
+</body>
+</html>

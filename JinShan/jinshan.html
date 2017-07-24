@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Java开发金山打字游戏</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body{background:url(img/wall1.jpg);}
+        .bg-div{width:1000px;height:150px;border:1px solid #fff;margin:0 auto;}
+        .showDiv{width:900px;height:600px;border:1px solid #0081FF;background-color:white;overflow: hidden;}
+        .scoreDiv{width:600px;height:30px;border:5px dashed #B4C7C7;background-color:white;}
+        .span{size:20px;color:orange;}
+        .spanScore{color:orange;}
+
+    </style>
+
+</head>
+<body onload="initPage();">
+
+<div class="bg-div">
+    <!--矩形显示区域-->
+    <div class="showDiv">
+
+    </div>
+    <hr/>
+    <!--分数展示区域-->
+    <div class="scoreDiv">
+        <span class="span">您的分数：</span>
+        <span class="spanScore" id="spanScore">0</span>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    var score = 0;
+    function initPage(){
+        //动态产生26个字母
+        generateChar();
+        //完成字母下落
+        downChar();
+    }
+
+    window.onkeyup=function(){
+        var div = document.getElementById("showDiv");
+
+
+        var eve = window.event||event;
+        var code = eve.keyCode;
+//获取显示区域中的按钮
+        var btns = div.childNodes;
+//遍历显示区域中的按钮
+        for(var i= 0;i<btns.length;i++){
+//获取每一个按钮
+            var btn = btns[i];
+//判断节点
+            if(btn.nodeType==1){
+                if(btn.value==chars[code-65]){
+                    div.removeChild(btn);
+
+                    score +=10 ;
+                    document.getElementById("spanScore").innerHTML=score.parseInt(score);
+                    break;
+                }
+
+            }
+//判断用户输入的键值 和 显示区域的按钮 是否匹配
+//按钮消失
+//分数递增
+        }
+
+
+    }
+
+    function generateChar(){
+
+
+        //获取产生字母的区域
+        var div = document.getElementById("showDiv");
+        //每隔一秒创建一个 定时执行
+        window.setInterval(function(){
+            var btn = document.createElement("input");
+            var random = Math.ceil(Math.random()*3);
+            //给按钮添加样式
+            btn.type="button";
+            btn.value = chars[parseInt(Math.random()*26)];
+            btn.className="btn";
+            btn.style.top = "10px";
+            btn.style.left=parseInt(Math.random()*760)+"px" ;
+
+            btn.style.background="url(images/"+random+".jpg)no-repeat";
+            btn.style.backgroundSize="40px 40px";
+
+            div.appendChild(btn);
+
+        },1000);
+
+
+
+    }
+
+    function downChar(){
+        //获取产生字母的区域
+        var div = document.getElementById("showDiv");
+
+        //每隔一秒 定时执行 下落动作
+        window.setInterval(function(){
+            //获取显示区域中的所有创建按钮
+            var btns=div.childNodes;
+
+//遍历所有创建按钮 执行下落动作 for(var i=0;i<btns.length;i++){ //获取每一个按钮 var btn = btns[i]; //判断按钮是否已创建 if(btn.nodeType==1){ var top = parseInt(btn.style.top);
+
+            if(top<360){ btn.style.top = top+30+"px";
+
+            }else{  //干掉 div.removeChild(btn); score -= 10; document.getElementById("spanScore").innerHTML=score;
+
+            }
+
+        }
+
+
+    }
+    //判断按钮是否已经创建的
+    //判断是否溢出边界
+
+
+
+    },1000);
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

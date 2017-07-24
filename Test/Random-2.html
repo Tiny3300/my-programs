@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T45-随机取名</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+    <style type="text/css">
+        .show{
+
+            width:200px;
+            height:80px;
+            background-color: #a6beee;
+            font:bold 28px 宋体;
+            color: #ff1312;
+            position: absolute;
+                top:30px;
+            left:500px;
+
+        }
+        button{
+            padding:3px;
+            color: #55e259;
+            font-size:22px;
+            background-color: #c11314;
+            position: absolute;
+            left:50px;
+        }
+        .name{
+            position: absolute;
+            left:50px;
+            bottom:5px;
+        }
+    </style>
+
+
+</head>
+<body>
+<div class="show">
+<button ng-click="change()">随机取名</button>
+
+<div class="name"><span ng-bind="a"></span><span ng-bind="b"></span></div>
+
+
+</div>
+</body>
+
+<script type="text/javascript">
+    var app=angular.module("myApp",[]);
+    app.controller("myCtrl", function ($scope) {
+
+        $scope.change = function () {
+            $scope.firstName=["秦","楚","萧","苏"];
+            var i=Math.floor(Math.random()*4);
+            $scope.a = $scope.firstName[i];
+//             console.log('i='+i);
+
+
+            $scope.lastName=["风","云","雷","枫","岚","月","霜","雪","雨"];
+            var j=Math.floor(Math.random()*6);
+            $scope.b=$scope.lastName[j];
+//              console.log('j='+j);
+        }
+    });
+
+
+
+
+</script>
+
+</html>

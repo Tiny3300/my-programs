@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>T39-string对象的方法</title>
+    <script src="js/angular.js" type="text/javascript"></script>
+</head>
+<body>
+<p id="demo">单击显示被分割的数组</p>
+<button onclick="myFunc()">点击</button>
+
+</body>
+
+<script type="text/javascript">
+    function myFunc() {
+        var str = "if you can't enjoy the music at a sensible";
+      var n=str.split("");
+      document.getElementById("demo").innerHTML=n;
+//        var m = str.substr(4, 5);
+//        document.getElementById("demo").innerHTML = m;
+
+
+    }
+
+
+</script>
+
+</html>

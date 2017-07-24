@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title></title>
+</head>
+<body>
+
+<input type="checkbox" ng-checked="queryListData.marquee" ng-click="groupCheckbox('void',queryListData,$index)">
+<br/>
+<hr/>
+<input type="checkbox" name="group" ng-click="groupCheckbox('void',queryListData,$index)" ng-checked="item.checkbox"/>
+<input type="checkbox" name="group" ng-click="groupCheckbox('void',queryListData,$index)" ng-checked="item.checkbox"/>
+
+{{a}}
+<script>
+    angular.module("myApp", [])
+            .controller("myCtrl", function ($scope) {
+                $scope.a="你好";
+
+                $scope.groupCheckbox = function(reType, checkList, num) {
+                    //当没有数据的时候，不做多选处理，否则会因为marquee出现一条空数据
+                    if (undefined === checkList) {
+                        return;
+                    }
+                    var checkBool;//复选框状态
+                    var newList = [];//返回集合
+                    if (undefined === num) {//全选/反选
+                        checkBool = !checkList.marquee;
+                        checkList.marquee = checkBool; //全选框状态修改
+                        for (var i in checkList) {
+                            //如果i是全选框的状态，则当条数据去掉
+                            if ('marquee' === i) {
+                                break;
+                            }
+                            checkList[i].checkbox = checkBool; //多选框状态修改
+                            newList.push(checkList[i]);//获取所有勾选数据数组
+                        }
+                        //如果全选框不为true则返回空数组
+                        if (false === checkBool) {
+                            newList = [];
+                        }
+                    } else {//单选
+                        checkList[num].checkbox = !checkList[num].checkbox; //当前多选框状态修改
+                        checkBool = true;
+                        for (var o in checkList) {
+                            //如果i是全选框的状态，则当条数据去掉
+                            if ('marquee' === o) {
+                                break;
+                            }
+                            //一旦存在多选框状态不为true，则全选框的状态应为false
+                            if (true !== checkList[o].checkbox) {
+                                checkBool = false;
+                            }
+                            //获取所有勾选数据数组
+                            if (true === checkList[o].checkbox) {
+                                newList.push(checkList[o]);
+                            }
+                        }
+                        checkList.marquee = checkBool; //全选框赋值
+                    }
+                    //返回对象
+                    if ('list' === reType) {
+                        return newList;
+                    } else if ('void' === reType) {
+                        return false;
+                    }
+                }
+
+
+            })
+</script>
+
+</body>
+</html>

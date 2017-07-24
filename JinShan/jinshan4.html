@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title>金山打字游戏4</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body{
+            background:url(img/wall1.jpg);position:absolute;
+
+        }
+
+
+        #g_title{width:800px;height:50px;color:#ffffff;
+            text-align: center;
+          }
+
+        #showText{width:1000px;height:400px;
+            background:#ffffff;position:absolute;left:100px;
+        border:3px dashed black;overflow: hidden;}
+
+        #showScore{width:800px;height:100px;
+            background:#ffffff;position:absolute;left:100px;top:480px;
+            font-size:50px;text-align:center;
+            font-family: '微软雅黑';color:#666666;
+            line-height: 80px;  border:3px dashed black;}
+        .btn{ position:absolute;width:40px;height:40px;overflow: hidden;}
+
+    </style>
+    <script type="text/javascript">
+        var chars = new Array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+        var score = 0 ;
+            //获取展示区域
+        var div = document.getElementById("showText");
+        function initPage(){
+            createChars();
+            downChar();
+
+        }
+
+
+        //创建字母
+        function createChars(){
+            window.setInterval(function(){
+                div = document.getElementById("showText");
+                var result = Math.random()*26+"";
+                result = result.split(".");
+                //创建button
+                var btn = document.createElement("input");
+                btn.type="button";
+                btn.value=chars[result[0]];
+
+                btn.className="btn";
+                btn.style.top="50px";
+                btn.style.left=parseInt(Math.random()*860+40)+"px";
+                btn.style.font="bold 30px 宋体";
+                btn.style.color="white";
+
+                btn.style.background="url(img/"+(Math.random()*3+1+"").split(".")[0]+".png)";
+                // btn.style.backgroundSize="40px 40px";
+
+                div.appendChild(btn);
+            },1000);
+
+        }
+
+
+        //字母下落操作
+        function downChar(){
+            //获取展示区域
+            var div = document.getElementById("showText");
+            //一秒下落40px
+            window.setInterval(function(){
+                //获取所有的字母
+                var btns = div.childNodes;
+                for(var i=0;i<btns.length;i++){
+                    var btn =btns[i];
+                     //判断它是不是元素节点
+                    //元素节点1 属性节点2 文本节点3
+                    if(1==btn.nodeType){
+                        var top= parseInt(btn.style.top);
+                        var left=parseInt(btn.style.left);
+                        if(top<360){
+                            btn.style.top=top+40+"px";
+                            btn.style.left=left+"px";
+
+                        }else{
+                            div.removeChild(btn);
+                            score-=10;
+                            document.getElementById("score").innerHTML=score;
+                        }
+
+
+                    }
+
+
+                }
+
+            },1000);
+
+        }
+//按下键盘后 相应操作
+        window.onkeyup= function () {
+            //获取显示区域
+            var div = document.getElementById("showText");
+            //获取按下键盘的值
+            var eve = window.event||event;
+            var code = eve.keyCode;
+            //获取显示区域创建出来的按钮
+            var btns = div.childNodes;
+            //遍历节点
+            for(var i=0;i<btns.length;i++){
+                //获取节点
+                var btn=btns[i];
+                if(1==btn.nodeType){
+                    if(btn.value==chars[code-65]){
+
+                        div.removeChild(btn);
+                        score+=10;
+                        document.getElementById("score").innerHTML=score;
+                        break;
+                    }
+                }
+
+            }
+
+
+        }
+            
+
+
+
+
+
+    </script>
+</head>
+<body onload="initPage()">
+<div id="game">
+    <div id="g_title"><h1>打字游戏</h1></div>
+
+    <div id="showText"></div>
+
+    <div id="showScore">
+        你的分数为：<span id="score">0</span>&nbsp;分
+
+
+    </div>
+
+
+
+</div>
+</body>
+</html>
